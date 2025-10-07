@@ -1,0 +1,3 @@
+source_path: "dbfs:/FileStore/raw/transactions/"
+silver_path: "dbfs:/FileStore/silver_delta/"
+gold_path: "dbfs:/FileStore/gold_delta/"
