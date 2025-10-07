@@ -18,3 +18,6 @@ write_to_delta(df_latest, silver_path)
 write_to_delta(df_agg, gold_path)
 
 spark.streams.awaitAnyTermination()
+
+
+

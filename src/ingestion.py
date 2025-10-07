@@ -6,6 +6,7 @@ def read_autoloader(spark, source_path: str):
         .format("cloudFiles")
         .option("cloudFiles.format", "csv")
         .option("header", "true")
+        .option("cloudFiles.schemaLocation", "dbfs:/FileStore/schema/transactions/")  # fix here
         .load(source_path)
     )
     return df
