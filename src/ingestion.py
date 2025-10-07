@@ -10,3 +10,7 @@ def read_autoloader(spark, source_path: str):
         .load(source_path)
     )
     return df
+ 
+
+
+#read_autoloader(spark, "/FileStore/raw/transactions/")

@@ -9,7 +9,15 @@ source_path = "dbfs:/FileStore/raw/transactions/"
 silver_path = "dbfs:/FileStore/silver_delta/"
 gold_path = "dbfs:/FileStore/gold_delta/"
 
-df_raw = read_autoloader(spark, source_path)
+#df_raw = read_autoloader(spark, source_path)
+df_raw = (
+    spark.readStream
+    .format("cloudFiles")
+    .option("cloudFiles.format", "csv")
+    .option("header", "true")
+    .option("cloudFiles.schemaLocation", "dbfs:/FileStore/schema/transactions/")  # separate schema folder
+    .load(source_path)
+)
 df_clean = clean_transactions(df_raw)
 df_latest = get_latest_transaction(df_clean)
 df_agg = aggregate_customer_spend(df_clean)
